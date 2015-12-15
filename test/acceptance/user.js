@@ -41,6 +41,19 @@ describe('Users route', function() {
 			})
 		})
 	})
+	describe('Delete user', function(done) {
+			it('should Delete a user.', function(done){
+				chai.request(app)
+				.delete('/users/')
+				.send({id: '566f9de390a87e49e989bec5'})
+				.end(function(err, res){
+					expect(res.body._id).to.be.undefined;
+					expect(err).to.be.null;
+					expect(res).to.have.status(200)
+					done();
+			})
+		})
+	})
 			it('user does not provide username', function(done){
 				chai.request(app)
 				.post('/users/login')
@@ -54,15 +67,6 @@ describe('Users route', function() {
 				chai.request(app)
 				.post('/users/login')
 				.send({username: 'FriskyBiznu', email:'e@mail.com'})
-				.end(function(err, res){
-					expect(res).to.have.status(400)
-					done();
-			})
-			})
-			it('user does not provide email', function(done){
-				chai.request(app)
-				.post('/users/login')
-				.send({username: 'FriskyBiznu',password: 'password1'})
 				.end(function(err, res){
 					expect(res).to.have.status(400)
 					done();

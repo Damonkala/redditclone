@@ -8,7 +8,7 @@ chai.use(chaiHttp);
 var app = require('../../app');
 var Post = require('../../models/post');
 
-var clearDb = function(id){
+var clearDb = function(id, done){
 	Post.findByIdAndRemove(id, function(err) {
 		done();
 	});
@@ -33,7 +33,7 @@ describe('Post route', function(done) {
 			})
 		})
 	})
-	describe('Get all posts', function() {
+	describe('Get all posts', function(done) {
 			it('load posts.', function(done){
 				chai.request(app)
 				.get('/posts/list')
