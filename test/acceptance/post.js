@@ -44,4 +44,17 @@ describe('Post route', function(done) {
 			})
 		})
 	})
+	describe('Delete post', function(done) {
+			it('should Delete a post.', function(done){
+				chai.request(app)
+				.delete('/posts/')
+				.send({id: '566fa2461740aba0ea1aa55d'})
+				.end(function(err, res){
+					// expect(res.body._id).to.be.undefined;
+					expect(err).to.be.null;
+					expect(res).to.have.status(200)
+					done();
+			})
+		})
+	})
 })

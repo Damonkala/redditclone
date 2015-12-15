@@ -26,5 +26,9 @@ router.post('/reply', function(req, res) {
     })
   });
 });
-
+router.delete('/', function(req, res, next) {
+  Comment.findByIdAndRemove(req.body.id, function(err, data){
+    res.send(data);
+  })
+});
 module.exports = router;

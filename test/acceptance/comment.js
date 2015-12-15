@@ -8,11 +8,11 @@ chai.use(chaiHttp);
 var app = require('../../app');
 var Comment = require('../../models/comment');
 
-// var clearDb = function(id){
-// 	Comment.removeById(id, function(err) {
-// 		done();
-// 	});
-// }
+var clearDb = function(id){
+	Comment.removeById(id, function(err) {
+		done();
+	});
+}
 describe('Comment route', function() {
 	// before(clearDb)
 	describe('Write Comment on post', function(done) {
@@ -42,6 +42,19 @@ describe('Comment route', function() {
 				})
 				.end(function(err, res){
 					expect(res.body._id).to.be.ok;
+					expect(err).to.be.null;
+					expect(res).to.have.status(200)
+					done();
+			})
+		})
+	})
+	describe('Delete comment', function(done) {
+			it('should Delete a comment.', function(done){
+				chai.request(app)
+				.delete('/comments')
+				.send({id: '566fa22fb6fe848aeaaadf05'})
+				.end(function(err, res){
+					// expect(res.body._id).to.be.undefined;
 					expect(err).to.be.null;
 					expect(res).to.have.status(200)
 					done();

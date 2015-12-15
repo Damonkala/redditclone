@@ -9,6 +9,11 @@ router.get('/list', function(req, res, next) {
     res.send(posts)
   })
 });
+router.delete('/', function(req, res, next) {
+  Post.findByIdAndRemove(req.body.id, function(err, data){
+    res.send(data);
+  })
+});
 
 router.post('/new', function(req, res) {
   Post.create(req.body, function(err, posts) {
