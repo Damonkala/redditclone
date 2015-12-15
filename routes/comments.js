@@ -15,6 +15,7 @@ router.post('/new', function(req, res) {
     })
   });
 });
+
 router.post('/reply', function(req, res) {
   Comment.create(req.body, function(err, comments) {
     res.status(err ? 400 : 200).send(err || comments);

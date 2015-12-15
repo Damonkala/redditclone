@@ -41,4 +41,40 @@ describe('Users route', function() {
 			})
 		})
 	})
+			it('user does not provide username', function(done){
+				chai.request(app)
+				.post('/users/login')
+				.send({password: 'password1', email:'e@mail.com'})
+				.end(function(err, res){
+					expect(res).to.have.status(400)
+					done();
+			})
+			})
+			it('user does not provide password', function(done){
+				chai.request(app)
+				.post('/users/login')
+				.send({username: 'FriskyBiznu', email:'e@mail.com'})
+				.end(function(err, res){
+					expect(res).to.have.status(400)
+					done();
+			})
+			})
+			it('user does not provide email', function(done){
+				chai.request(app)
+				.post('/users/login')
+				.send({username: 'FriskyBiznu',password: 'password1'})
+				.end(function(err, res){
+					expect(res).to.have.status(400)
+					done();
+			})
+			})
+			it('user sucks and does not provide anything', function(done){
+				chai.request(app)
+				.post('/users/login')
+				.send({})
+				.end(function(err, res){
+					expect(res).to.have.status(400)
+					done();
+			})
+			})
 })
