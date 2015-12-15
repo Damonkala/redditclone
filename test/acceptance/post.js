@@ -14,7 +14,7 @@ var clearDb = function(done){
 	});
 }
 describe('Post route', function() {
-	before(clearDb)
+	// before(clearDb)
 	describe('Create Post', function(done) {
 			it('should write a new post.', function(done){
 				chai.request(app)
