@@ -8,6 +8,7 @@ var commentSchema = mongoose.Schema({
 	timestamp: {type: Date, default: Date.now},
 	content: {type: String, reqired: true},
 	comments: {type: Array},
+	parentID: {type: String}
 });
 
 var Comment = mongoose.model('Comment', commentSchema);

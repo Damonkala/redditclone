@@ -14,7 +14,9 @@ router.post('/new', function(req, res) {
   Post.create(req.body, function(err, posts) {
     res.status(err ? 400 : 200).send(err || posts);
     console.log(posts)
-});
+    var postID = req.body._id;
+    console.log(postID)
+  });
 });
 
 module.exports = router;

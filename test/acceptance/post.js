@@ -8,12 +8,12 @@ chai.use(chaiHttp);
 var app = require('../../app');
 var Post = require('../../models/post');
 
-var clearDb = function(done){
-	Post.remove({}, function(err) {
+var clearDb = function(id){
+	Post.findByIdAndRemove(id, function(err) {
 		done();
 	});
 }
-describe('Post route', function() {
+describe('Post route', function(done) {
 	// before(clearDb)
 	describe('Create Post', function(done) {
 			it('should write a new post.', function(done){
@@ -28,6 +28,7 @@ describe('Post route', function() {
 					expect(res.body._id).to.be.ok;
 					expect(err).to.be.null;
 					expect(res).to.have.status(200)
+					clearDb(res.body._id)
 					done();
 			})
 		})
