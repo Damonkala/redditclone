@@ -32,6 +32,16 @@ userSchema.statics.register = function(user, cb) {
   });
 };
 
+userSchema.statics.authenticate = function(inputUser, cb){
+  User.findOne({username: inputUser.username}, function(err, dbUser) {
+    if(err || !dbUser) return cb(err || 'Incorrect username or password.', err);
+    bcrypt.compare(inputUser.password, dbUser.password, function(err, isGood){
+      if(err || !isGood) return cb(err || 'Incorrect username or password.', err);
+      dbUser.password = null;
+      cb(null, dbUser);
+    });
+  });
+};
 var User = mongoose.model('User', userSchema);
 
 
