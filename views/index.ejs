@@ -3,9 +3,19 @@
   <head>
     <title><%= title %></title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="stylesheet" type="text/css" href="vendor/sweetalert/dist/sweetalert.css">
   </head>
-  <body>
+  <body ng-app="redditcloneApp">
     <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+    <p>Welcome to <%= title %>. It's like Reddit, but it blows!</p>
+     <div ui-view></div>
+    <script src="/vendor/angular/angular.min.js"></script>
+    <script src="/vendor/ngStorage/ngStorage.min.js"></script>
+    <script src="/vendor/angular-ui-router/release/angular-ui-router.min.js"></script>
+   <script src="/module.js"></script>
+   <script src="/javascripts/controllers/login.js"></script>
+   <script src="/javascripts/controllers/register.js"></script>
+    <script src="/vendor/sweetalert/dist/sweetalert.min.js"></script>
+   <script src="/javascripts/models/user.js"></script>
   </body>
 </html>

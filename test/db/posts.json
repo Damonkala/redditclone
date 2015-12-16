@@ -1,0 +1,14 @@
+[
+  {
+    "user": "FriskyBiznu",
+    "title": "Test Post",
+    "content": "Test Post do not upvote",
+    "_id": {"$oid": "000000000000000000000001"}
+  },
+  {
+    "user": "BuzyFrisk",
+    "title": "Test Post again",
+    "content": "Test Post do not upvote part 2",
+    "_id": {"$oid": "000000000000000000000002"}
+  }
+]

@@ -14,6 +14,7 @@ router.delete('/', function(req, res, next) {
 });
 
 router.post('/register', function(req, res) {
+  console.log(req.body)
   User.register(req.body, function(err, savedUser){
     res.status(err ? 400 : 200).send(err || savedUser);
     console.log(savedUser)

@@ -1,0 +1,12 @@
+[
+  {
+    "user": "FriskyBiznu",
+    "content": "I like this post",
+    "_id": {"$oid": "0000000000000000000000c1"}
+  },
+  {
+    "user": "BuzyFrisk",
+    "content": "I do not like this post",
+    "_id": {"$oid": "0000000000000000000000c2"}
+  }
+]

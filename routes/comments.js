@@ -16,14 +16,21 @@ router.post('/new', function(req, res) {
   });
 });
 
-router.post('/reply', function(req, res) {
-  Comment.create(req.body, function(err, comments) {
-    res.status(err ? 400 : 200).send(err || comments);
-    console.log("COMMENTS", comments)
-    Comment.findByIdAndUpdate('566f7a6e8d651245e5864c81', {$push: {comments: comments}},
-    function(err, data){
-      console.log(data)
-    })
+router.get('/:id', function(req, res, next) {
+  Comment.findById(req.params.id, function(err, comment) {
+    res.status(err ? 400 : 200).send(err || comment);
+  }).populate('comments');
+});
+
+router.put('/:commentId/addComment/:secondCommentId', function(req, res) {
+  Comment.findById(req.params.commentId, function(err, comment) {
+    console.log('ERROR:', err)
+    console.log('COMMENT:', comment)
+    if(err || !comment) return res.status(400).send({err: 'Comment not found.'});
+    comment.comments.push(req.params.secondCommentId);
+    comment.save(function(err, savedComment) {
+      res.status(err ? 400 : 200).send(err || savedComment);
+    });
   });
 });
 router.delete('/', function(req, res, next) {

@@ -1,0 +1,19 @@
+{
+  "name": "redditclone",
+  "description": "",
+  "main": "",
+  "authors": [
+    "Damon Kalaboukis <damonkala@yahoo.com>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/Damonkala/redditclone",
+  "moduleType": [],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/vendor",
+    "test",
+    "tests"
+  ]
+}

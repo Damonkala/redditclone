@@ -1,19 +1,30 @@
 'use strict';
 
 var mongoose = require('mongoose');
-// var jwt = require('jwt-simple');
+var Schema = mongoose.Schema;
 var bcrypt = require('bcrypt');
+var jwt = require('jwt-simple');
 
-var userSchema = mongoose.Schema({
-	username: {type: String, reqired: true, unique: true},
-	password: {type: String, reqired: true},
-	email: {type: String, reqired: true}
+var User;
+
+var userSchema = Schema({
+  username: { type: String, required: true, unique: true },
+  password: { type: String, required: true }
 });
+
+userSchema.methods.token = function() {
+  var payload = {
+    username: this.username,
+    _id: this._id
+  };
+  var secret = process.env.JWT_SECRET;
+  var token = jwt.encode(payload, secret);
+  return token;
+};
 
 userSchema.statics.register = function(user, cb) {
   var username = user.username;
   var password = user.password;
-  var email = user.email;
   User.findOne({username: username}, function(err, user){
     if(err || user) return cb(err || 'Username already taken.');
     bcrypt.genSalt(13, function(err1, salt) {
@@ -21,7 +32,6 @@ userSchema.statics.register = function(user, cb) {
         if(err1 || err2) return cb(err1 || err2);
         var newUser = new User();
         newUser.username = username;
-        newUser.email = email;
         newUser.password = hash;
         newUser.save(function(err, savedUser){
           savedUser.password = null;
@@ -34,15 +44,14 @@ userSchema.statics.register = function(user, cb) {
 
 userSchema.statics.authenticate = function(inputUser, cb){
   User.findOne({username: inputUser.username}, function(err, dbUser) {
-    if(err || !dbUser) return cb(err || 'Incorrect username or password.', err);
+    if(err || !dbUser) return cb(err || 'Incorrect username or password.');
     bcrypt.compare(inputUser.password, dbUser.password, function(err, isGood){
-      if(err || !isGood) return cb(err || 'Incorrect username or password.', err);
+      if(err || !isGood) return cb(err || 'Incorrect username or password.');
       dbUser.password = null;
       cb(null, dbUser);
     });
   });
 };
-var User = mongoose.model('User', userSchema);
 
-
+User = mongoose.model('User', userSchema);
 module.exports = User;

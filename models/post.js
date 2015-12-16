@@ -1,17 +1,20 @@
 'use strict';
 
 var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
 
-var postSchema = mongoose.Schema({
-	user: {type: String, reqired: true},
-	title: {type: String, reqired: true},
-	score: {type: Number},
-	comments: {type: Array},
+var Post;
+
+var postSchema = new Schema({
+	user: {type: String, required: true},
+	title: {type: String, required: true},
+	score: {type: Number, default: 0},
+	comments: [{ type: Schema.Types.ObjectId, ref: 'Comment'}],
 	timestamp: {type: Date, default: Date.now},
-	content: {type: String, reqired: true}
+	content: {type: String, required: true}
 });
 
-var Post = mongoose.model('Post', postSchema);
+Post = mongoose.model('Post', postSchema);
 
 
 module.exports = Post;

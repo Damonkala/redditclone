@@ -24,4 +24,22 @@ router.post('/new', function(req, res) {
   });
 });
 
+router.get('/:id', function(req, res, next) {
+  Post.findById(req.params.id, function(err, post) {
+    res.status(err ? 400 : 200).send(err || post);
+  }).populate('comments');
+});
+
+router.put('/:postId/addComment/:commentId', function(req, res) {
+  Post.findById(req.params.postId, function(err, post) {
+    console.log('ERROR:', err)
+    console.log('POST:', post)
+    if(err || !post) return res.status(400).send({err: 'Post not found.'});
+    post.comments.push(req.params.commentId);
+    post.save(function(err, savedPost) {
+      res.status(err ? 400 : 200).send(err || savedPost);
+    });
+  });
+});
+
 module.exports = router;
