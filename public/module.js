@@ -17,9 +17,9 @@ app.config(function($stateProvider, $urlRouterProvider) {
     .state('login', { url: '/login', templateUrl: 'partials/login.html', controller: 'loginCtrl'})
     .state('register', { url: '/register', templateUrl: 'partials/register.html', controller: 'registerCtrl'})
 
-    // .state('posts', { url: '/post', templateUrl: 'templates/post/layout.html', abstract: true })
-    // .state('post.index', { url: '/', templateUrl: 'templates/post/postIndex.html', controller: 'postIndexCtrl'})
-    // .state('post.show', { url: '/{bookId}', templateUrl: 'templates/post/postShow.html', controller: 'postShowCtrl'})
+    .state('posts', { url: '/posts', templateUrl: 'partials/posts/layout.html', abstract: true })
+    .state('posts.index', { url: '/', templateUrl: 'partials/posts/postsIndex.html', controller: 'postIndexCtrl'})
+    .state('posts.show', { url: '/{postId}', templateUrl: 'partials/posts/postsShow.html', controller: 'postShowCtrl'})
 
 
 });

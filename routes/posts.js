@@ -4,7 +4,7 @@ var router = express.Router();
 var Post = require('../models/post')
 
 
-router.get('/list', function(req, res, next) {
+router.get('/', function(req, res, next) {
   Post.find({}, function(err, posts){
     res.send(posts)
   })
