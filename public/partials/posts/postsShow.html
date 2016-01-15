@@ -6,6 +6,7 @@
    	{{post.user}}
   </h3>
   <h3>Comments: </h3>
+  <h3 ng-if="!comments.length">Theres nothing here</h3>
   <table class="table table-bordered table-hover">
     <tbody>
       <div ng-repeat='comment in comments track by $index'>
