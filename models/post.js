@@ -6,7 +6,7 @@ var Schema = mongoose.Schema;
 var Post;
 
 var postSchema = new Schema({
-	user: {type: String, required: true},
+	user: {type: String},
 	title: {type: String, required: true},
 	score: {type: Number, default: 0},
 	comments: [{ type: Schema.Types.ObjectId, ref: 'Comment'}],

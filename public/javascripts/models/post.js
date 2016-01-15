@@ -9,4 +9,7 @@ app.service('PostService', function($http, ENV) {
   this.show = function(postId) {
     return $http.get(`${ENV.API_URL}/posts/${postId}`);
   };
+  this.post = function(post){
+    return $http.post(`${ENV.API_URL}/posts/new`, post);
+  }
 });
