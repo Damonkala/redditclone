@@ -8,7 +8,7 @@ app.controller('loginCtrl', function($scope, $state, $localStorage, UserService)
     .then(function(res){
       $scope.$storage.myToken = res.data.token;
       $scope.$storage.id = res.data.id;
-      $state.go('post.index');
+      $state.go('posts.index');
     }, function(err) {
       console.error(err);
     });
