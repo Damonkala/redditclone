@@ -10,7 +10,8 @@ app.run(function($rootScope, $localStorage) {
   $rootScope.$storage = $localStorage;
 });
 
-app.config(function($stateProvider, $urlRouterProvider) {
+app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
+  // $locationProvider.html5Mode(true);
   $urlRouterProvider.otherwise('/');
 
   $stateProvider
