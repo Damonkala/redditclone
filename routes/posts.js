@@ -16,14 +16,8 @@ router.delete('/', function(req, res, next) {
 });
 
 router.post('/new', function(req, res) {
-  Post.create(req.body, function(err, posts) {
-    Post.find({}, function(err, posts){
-      res.send(posts)
-    })
-    // res.status(err ? 400 : 200).send(err || posts);
-    console.log("RETURNED POSTS", posts)
-    var postID = req.body._id;
-    console.log("NEW POST ID:", postID)
+  Post.create(req.body, function(err, post) {
+    res.send(post)
   });
 });
 

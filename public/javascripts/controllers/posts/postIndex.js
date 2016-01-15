@@ -10,10 +10,11 @@ app.controller('postIndexCtrl', function($scope, $state, PostService) {
     console.error(err);
   });
   $scope.submit = function(post){
-    
     PostService.post(post)
     .then(function(res) {
-      $scope.posts = res.data;
+      $scope.postId = res.data._id;
+      $state.go('posts.show', {'postId':$scope.postId});
+      // PostService.show($scope.postId)
     }, function(err) {
       console.error(err);
     })
