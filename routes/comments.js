@@ -7,11 +7,9 @@ var Post = require('../models/post')
 
 router.post('/new', function(req, res) {
   Comment.create(req.body, function(err, comments) {
-    res.status(err ? 400 : 200).send(err || comments);
-    console.log("COMMENTS", comments)
-    Post.findByIdAndUpdate('566f797e3413351fe5287c5b', {$push: {comments: comments}},
+    Post.findByIdAndUpdate(req.body.postId, {$push: {comments: comments}},
     function(err, data){
-      console.log(data)
+      res.send(data)
     })
   });
 });

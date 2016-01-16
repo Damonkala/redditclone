@@ -4,7 +4,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var commentSchema = mongoose.Schema({
-	user: {type: String, required: true},
+	user: {type: String},
 	score: {type: Number, default: 0},
 	timestamp: {type: Date, default: Date.now},
 	content: {type: String, required: true},

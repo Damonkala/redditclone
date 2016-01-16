@@ -18,4 +18,9 @@
       </div>
     </tbody>
   </table>
+  <div class="form-group">
+    <label for="comment">Write a comment:</label>
+    <textarea name="comment" rows="10" cols="100" ng-model='comment'></textarea>
+  </div>
+  <button ng-click='submit(comment)' class="btn btn-primary" id="submit">Submit</button>
 </div>
